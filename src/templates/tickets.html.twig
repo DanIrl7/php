@@ -24,33 +24,6 @@
             padding: 0 20px;
         }
 
-        /* Header */
-        header {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 20px 0;
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .logout-btn {
-            background-color: #e74c3c;
-            color: white;
-            padding: 8px 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
         /* Main Content */
         main {
             padding: 40px 0;
@@ -253,15 +226,7 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">TicketApp</div>
-                <button class="logout-btn" id="logoutBtn">Logout</button>
-            </div>
-        </div>
-    </header>
-
+    {% include 'components/navbar.html.twig' %}
     <main>
         <div class="container">
             <div class="ticket-actions">
@@ -329,12 +294,6 @@
         if (!localStorage.getItem('ticketapp_session')) {
             window.location.href = '/auth/login';
         }
-
-        // Logout functionality
-        document.getElementById('logoutBtn').addEventListener('click', function() {
-            localStorage.removeItem('ticketapp_session');
-            window.location.href = '/';
-        });
 
         // Ticket data
         let tickets = JSON.parse(localStorage.getItem('tickets')) || [];
