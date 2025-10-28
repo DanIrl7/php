@@ -1,0 +1,9 @@
+[build] 
+# Build command to install Composer dependencies 
+builder = "nixpacks" [deploy] 
+# Start command for PHP built-in server startCommand = "php -S 0.0.0.0:$PORT -t src"
+ # Railway will automatically set the PORT environment variable
+ [build.env] 
+# Specify PHP version (adjust if needed) PHP_VERSION = "8.2" 
+
+# Optional: If you need specific PHP extensions # PHP_EXTENSIONS = "mbstring pdo pdo_mysql"
