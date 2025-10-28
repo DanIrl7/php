@@ -1,0 +1,12 @@
+{
+    "name": "t430/php",
+    "description": "twig",
+    "autoload": {
+        "psr-4": {
+            "T430\\Php\\": "src/"
+        }
+    },
+    "require": {
+        "twig/twig": "^3.21"
+    }
+}
