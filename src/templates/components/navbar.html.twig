@@ -85,18 +85,44 @@
         <div class="navbar-container">
             <a href="/" class="logo">TicketApp</a>
             <div class="nav-links">
-                {% if app.user %}
+                <div id="auth-nav">
+                    <a href="/auth/login" class="auth-link">Login</a>
+                    <a href="/auth/signup" class="auth-link">Sign Up</a>
+                </div>
+                <div id="user-nav" style="display: none;">
                     <a href="/dashboard" class="nav-link">Dashboard</a>
                     <a href="/tickets" class="nav-link">Tickets</a>
                     <a href="/" class="logout-btn" id="logoutBtn">Logout</a>
-                {% else %}
-                    <div class="auth-links">
-                        <a href="/auth/login" class="auth-link">Login</a>
-                        <a href="/auth/signup" class="auth-link">Sign Up</a>
-                    </div>
-                {% endif %}
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Check authentication status on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const isAuthenticated = localStorage.getItem('ticketapp_session');
+            const authNav = document.getElementById('auth-nav');
+            const userNav = document.getElementById('user-nav');
+
+            if (isAuthenticated) {
+                authNav.style.display = 'none';
+                userNav.style.display = 'flex';
+            } else {
+                authNav.style.display = 'flex';
+                userNav.style.display = 'none';
+            }
+
+            // Add logout functionality
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    localStorage.removeItem('ticketapp_session');
+                    window.location.href = '/';
+                });
+            }
+        });
+    </script>
 </body>
 </html>
