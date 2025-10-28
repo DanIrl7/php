@@ -8,5 +8,9 @@
     },
     "require": {
         "twig/twig": "^3.21"
-    }
+    },
+    "post-install-cmd": [
+      "mkdir -p cache",
+      "chmod 755 cache"
+]
 }
